@@ -4,11 +4,17 @@ import './Calculator.css';
 import Button from './../../components/Button/Button.jsx';
 import Display from './../../components/Display/Display.jsx';
 
+import CalculatorController from '../../CalculatorController.js';
+
+const InitialState = {
+    display: ''
+};
+
 class Calculator extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { display: '' };
+        this.state = InitialState;
 
         this.clearMemory = this.clearMemory.bind(this);
         this.setOperation = this.setOperation.bind(this);
@@ -16,12 +22,12 @@ class Calculator extends Component {
     }
 
     clearMemory() {
-        this.setState({ display: '' });
+        this.setState(InitialState);
     }
 
     setOperation(op) {
         if (op === '=') {
-            this.setState({ display: new Function(`return ${this.state.display}`)() });
+            this.setState({ display: (new CalculatorController()).run(this.state.display) });
         } else {
             this.setState({ display: this.state.display + op });
         }
