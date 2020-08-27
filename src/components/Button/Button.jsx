@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Button.css';
 
-class Button extends Component {
-
+function Button(props) {
+    return (
+        <button className={props.className} onClick={e => props.click && props.click(props.label)}>
+            {props.label}
+        </button>
+    );
 }
 
-export default Button;;
+export default Button;
