@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Display.css';
 
-class Display extends Component {
-
+function Display(props) {
+    return (
+        <div className="display">
+            {props.label}
+        </div>
+    );
 }
 
 export default Display;
